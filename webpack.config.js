@@ -24,19 +24,38 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../'
+                        }
+                    }, 'css-loader'],
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif|svg)$/,
+                use: [
+                    {
+                        loader: "url-loader",
+                        options: {
+                            name: "[name].[ext]",
+                            limit: 1024, 
+                            outputPath: "images"
+                        }
+                    }
+                ]
             },
         ]
     },
     plugins: [
         new CleanWebpackPlugin(),
         new HTMLWebpackPlugin({
-            filename: './html/index.html',
+            filename: './index.html',
             template: './public/index.html',
             chunk: ['bundle']
         }),
         new MiniCssExtractPlugin({
-            filename:"./css/[name].css",
+            filename: "./css/[name].css",
         })
     ],
     devServer: {

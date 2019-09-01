@@ -4,3 +4,8 @@
 .p{
     color:blue;
 }
+.pic{
+    width: 400px;
+    height:600px;
+    background-image: url(./public/images/shiwei.jpg)
+}
